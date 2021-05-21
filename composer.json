@@ -1,0 +1,14 @@
+{
+    "name": "muqsit/tebexapi",
+    "description": "PHP library implementing Tebex Plugin API",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "muqsit\\tebexapi\\": "src/"
+        }
+    }
+}
