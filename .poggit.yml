@@ -1,0 +1,10 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/Muqsit/TebexAPI
+build-by-default: true
+branches:
+- master
+projects:
+  TebexAPI:
+    path: ""
+    model: virion
+    type: library
+...
