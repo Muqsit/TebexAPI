@@ -20,6 +20,13 @@ use muqsit\tebexapi\endpoint\coupons\TebexCoupon;
 use muqsit\tebexapi\endpoint\coupons\TebexCouponRequest;
 use muqsit\tebexapi\endpoint\coupons\TebexCouponsList;
 use muqsit\tebexapi\endpoint\coupons\TebexCouponsRequest;
+use muqsit\tebexapi\endpoint\giftcards\TebexGiftCard;
+use muqsit\tebexapi\endpoint\giftcards\TebexGiftCardCreateRequest;
+use muqsit\tebexapi\endpoint\giftcards\TebexGiftCardDeleteRequest;
+use muqsit\tebexapi\endpoint\giftcards\TebexGiftCardRequest;
+use muqsit\tebexapi\endpoint\giftcards\TebexGiftCardsList;
+use muqsit\tebexapi\endpoint\giftcards\TebexGiftCardsRequest;
+use muqsit\tebexapi\endpoint\giftcards\TebexGiftCardTopUpRequest;
 use muqsit\tebexapi\endpoint\information\TebexInformation;
 use muqsit\tebexapi\endpoint\information\TebexInformationRequest;
 use muqsit\tebexapi\endpoint\listing\TebexListingInfo;
@@ -173,5 +180,47 @@ abstract class BaseTebexApi implements TebexApi{
 	 */
 	final public function createCoupon(TebexCreatedCoupon $coupon, TebexResponseHandler $callback) : void{
 		$this->request(new TebexCouponCreateRequest($coupon), $callback);
+	}
+
+	/**
+	 * @param int $gift_card_id
+	 * @param TebexResponseHandler<TebexGiftCard> $callback
+	 */
+	final public function getGiftCard(int $gift_card_id, TebexResponseHandler $callback) : void{
+		$this->request(new TebexGiftCardRequest($gift_card_id), $callback);
+	}
+
+	/**
+	 * @param TebexResponseHandler<TebexGiftCardsList> $callback
+	 */
+	final public function getGiftCards(TebexResponseHandler $callback) : void{
+		$this->request(new TebexGiftCardsRequest(), $callback);
+	}
+
+	/**
+	 * @param string|null $expires_at
+	 * @param string $note
+	 * @param string $amount
+	 * @param TebexResponseHandler<TebexGiftCard> $callback
+	 */
+	final public function createGiftCard(?string $expires_at, string $note, string $amount, TebexResponseHandler $callback) : void{
+		$this->request(new TebexGiftCardCreateRequest($expires_at, $note, $amount), $callback);
+	}
+
+	/**
+	 * @param int $gift_card_id
+	 * @param TebexResponseHandler<TebexGiftCard>|null $callback
+	 */
+	final public function deleteGiftCard(int $gift_card_id, ?TebexResponseHandler $callback = null) : void{
+		$this->request(new TebexGiftCardDeleteRequest($gift_card_id), $callback ?? TebexResponseHandler::onSuccess(static function(TebexGiftCard $response) : void{}));
+	}
+
+	/**
+	 * @param int $gift_card_id
+	 * @param string $amount
+	 * @param TebexResponseHandler<TebexGiftCard>|null $callback
+	 */
+	final public function topUpGiftCard(int $gift_card_id, string $amount, ?TebexResponseHandler $callback = null) : void{
+		$this->request(new TebexGiftCardTopUpRequest($gift_card_id, $amount), $callback ?? TebexResponseHandler::onSuccess(static function(TebexGiftCard $response) : void{}));
 	}
 }

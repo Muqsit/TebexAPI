@@ -13,6 +13,8 @@ use muqsit\tebexapi\endpoint\coupons\create\TebexCouponCreateResponse;
 use muqsit\tebexapi\endpoint\coupons\create\TebexCreatedCoupon;
 use muqsit\tebexapi\endpoint\coupons\TebexCoupon;
 use muqsit\tebexapi\endpoint\coupons\TebexCouponsList;
+use muqsit\tebexapi\endpoint\giftcards\TebexGiftCard;
+use muqsit\tebexapi\endpoint\giftcards\TebexGiftCardsList;
 use muqsit\tebexapi\endpoint\information\TebexInformation;
 use muqsit\tebexapi\endpoint\listing\TebexListingInfo;
 use muqsit\tebexapi\endpoint\package\TebexPackage;
@@ -117,4 +119,36 @@ interface TebexApi{
 	 * @param TebexResponseHandler<TebexCouponCreateResponse> $callback
 	 */
 	public function createCoupon(TebexCreatedCoupon $coupon, TebexResponseHandler $callback) : void;
+
+	/**
+	 * @param int $gift_card_id
+	 * @param TebexResponseHandler<TebexGiftCard> $callback
+	 */
+	public function getGiftCard(int $gift_card_id, TebexResponseHandler $callback) : void;
+
+	/**
+	 * @param TebexResponseHandler<TebexGiftCardsList> $callback
+	 */
+	public function getGiftCards(TebexResponseHandler $callback) : void;
+
+	/**
+	 * @param string|null $expires_at
+	 * @param string $note
+	 * @param string $amount
+	 * @param TebexResponseHandler<TebexGiftCard> $callback
+	 */
+	public function createGiftCard(?string $expires_at, string $note, string $amount, TebexResponseHandler $callback) : void;
+
+	/**
+	 * @param int $gift_card_id
+	 * @param TebexResponseHandler<TebexGiftCard>|null $callback
+	 */
+	public function deleteGiftCard(int $gift_card_id, ?TebexResponseHandler $callback = null) : void;
+
+	/**
+	 * @param int $gift_card_id
+	 * @param string $amount
+	 * @param TebexResponseHandler<TebexGiftCard>|null $callback
+	 */
+	public function topUpGiftCard(int $gift_card_id, string $amount, ?TebexResponseHandler $callback = null) : void;
 }
