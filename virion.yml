@@ -1,5 +1,5 @@
 name: TebexAPI
 antigen: muqsit\tebexapi
-api: [3.0.0, 4.0.0, 4.0.0-BETA3] # pmmp api-independent
-version: 0.0.1
+api: [3.0.0, 4.0.0, 4.0.0-BETA7] # pmmp api-independent
+version: 0.0.2
 author: Muqsit

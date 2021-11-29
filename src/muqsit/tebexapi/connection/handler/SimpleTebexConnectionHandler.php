@@ -11,6 +11,7 @@ use muqsit\tebexapi\connection\response\TebexResponseHolder;
 use muqsit\tebexapi\connection\response\TebexResponseSuccessHolder;
 use muqsit\tebexapi\TebexApiStatics;
 use muqsit\tebexapi\utils\TebexException;
+use muqsit\tebexapi\utils\UnexpectedResponseCodeTebexException;
 use RuntimeException;
 use Throwable;
 
@@ -54,7 +55,10 @@ final class SimpleTebexConnectionHandler implements TebexConnectionHandler{
 					}catch(JsonException $e){
 						$message_body = [];
 					}
-					throw new TebexException($message_body["error_message"] ?? "Expected response code {$request->getExpectedResponseCode()}, got {$response_code}");
+					if(array_key_exists("error_message", $message_body)){
+						throw new TebexException($message_body["error_message"]);
+					}
+					throw UnexpectedResponseCodeTebexException::fromResponseCode($request->getExpectedResponseCode(), $response_code);
 				}
 
 				if($body === ""){
