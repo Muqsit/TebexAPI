@@ -10,10 +10,10 @@ abstract class TebexQueuedCommand{
 
 	private int $id;
 	private TebexCommand $command;
-	private int $payment_id;
-	private int $package_id;
+	private ?int $payment_id; // null if the command is initiated by a community goal
+	private ?int $package_id; // null if the command is initiated by a community goal
 
-	public function __construct(int $id, string $command, int $payment_id, int $package_id){
+	public function __construct(int $id, string $command, ?int $payment_id, ?int $package_id){
 		$this->id = $id;
 		$this->command = new TebexCommand($command);
 		$this->payment_id = $payment_id;
@@ -28,11 +28,11 @@ abstract class TebexQueuedCommand{
 		return $this->command;
 	}
 
-	final public function getPaymentId() : int{
+	final public function getPaymentId() : ?int{
 		return $this->payment_id;
 	}
 
-	final public function getPackageId() : int{
+	final public function getPackageId() : ?int{
 		return $this->package_id;
 	}
 }
