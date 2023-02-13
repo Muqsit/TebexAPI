@@ -17,7 +17,7 @@ final class TebexCouponCreateResponse implements TebexResponse{
 	 */
 	public static function fromTebexResponse(array $response) : self{
 		/**
-		 * @phpstan-var array{
+		 * @var array{
 		 * 		id: int,
 		 * 		code: string,
 		 * 		effective: array<string, mixed>,
@@ -39,17 +39,17 @@ final class TebexCouponCreateResponse implements TebexResponse{
 		return new self(
 			$response["id"],
 			$response["code"],
-			$effective->getType(),
-			$effective->getPackageIds(),
-			$effective->getCategoryIds(),
-			$discount->getType(),
-			$discount->getValue(),
-			$discount->getPercentage(),
-			!$expire->isRedeemLimited(),
-			!$expire->canExpire(),
-			$expire->getLimit(),
-			(string) date("Y-m-d", $expire->getDate()),
-			(string) date("Y-m-d", (int) strtotime($response["start_date"])),
+			$effective->type,
+			$effective->package_ids,
+			$effective->category_ids,
+			$discount->type,
+			$discount->value,
+			$discount->percentage,
+			$expire->redeem_unlimited,
+			$expire->expire_never,
+			$expire->limit,
+			date("Y-m-d", $expire->date),
+			date("Y-m-d", (int) strtotime($response["start_date"])),
 			$response["basket_type"],
 			$response["minimum"],
 			$response["username"],

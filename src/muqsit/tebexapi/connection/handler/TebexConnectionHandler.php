@@ -12,10 +12,8 @@ interface TebexConnectionHandler{
 
 	/**
 	 * @param TebexRequestHolder $request_holder
-	 * @param mixed[] $default_curl_options
+	 * @param array<int, mixed> $default_curl_options
 	 * @return TebexResponseHolder<TebexResponse>
-	 *
-	 * @phpstan-param array<int, mixed> $default_curl_options
 	 */
 	public function handle(TebexRequestHolder $request_holder, array $default_curl_options) : TebexResponseHolder;
 }

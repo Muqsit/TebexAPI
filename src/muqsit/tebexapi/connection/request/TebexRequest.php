@@ -7,7 +7,7 @@ namespace muqsit\tebexapi\connection\request;
 use muqsit\tebexapi\connection\response\TebexResponse;
 
 /**
- * @phpstan-template TTebexResponse of TebexResponse
+ * @template TTebexResponse of TebexResponse
  */
 interface TebexRequest{
 
@@ -41,9 +41,7 @@ interface TebexRequest{
 	 * data obtained from the API.
 	 *
 	 * @param mixed[] $response
-	 * @return TebexResponse
-	 *
-	 * @phpstan-return TTebexResponse
+	 * @return TTebexResponse
 	 */
 	public function createResponse(array $response) : TebexResponse;
 }

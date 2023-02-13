@@ -10,7 +10,7 @@ use muqsit\tebexapi\utils\TebexDiscountInfo;
 use muqsit\tebexapi\utils\TebexEffectiveInfo;
 
 /**
- * @phpstan-extends TebexGetRequest<TebexSalesList>
+ * @extends TebexGetRequest<TebexSalesList>
  */
 final class TebexSalesRequest extends TebexGetRequest{
 
@@ -23,10 +23,7 @@ final class TebexSalesRequest extends TebexGetRequest{
 	}
 
 	/**
-	 * @param array<string, mixed> $response
-	 * @return TebexResponse
-	 *
-	 * @phpstan-param array{
+	 * @param array{
 	 * 		data: array<array{
 	 * 			id: int,
 	 * 			effective: array{type: string, packages: int[], categories: int[]},
@@ -36,6 +33,7 @@ final class TebexSalesRequest extends TebexGetRequest{
 	 * 			order: int
 	 * 		}>
 	 * } $response
+	 * @return TebexResponse
 	 */
 	public function createResponse(array $response) : TebexResponse{
 		$sales = [];

@@ -8,28 +8,12 @@ use muqsit\tebexapi\connection\response\TebexResponse;
 
 final class TebexQueuedOfflineCommandsInfo implements TebexResponse{
 
-	private TebexQueuedOfflineCommandsMeta $meta;
-
-	/** @var TebexQueuedOfflineCommand[] */
-	private array $commands;
-
 	/**
 	 * @param TebexQueuedOfflineCommandsMeta $meta
 	 * @param TebexQueuedOfflineCommand[] $commands
 	 */
-	public function __construct(TebexQueuedOfflineCommandsMeta $meta, array $commands){
-		$this->meta = $meta;
-		$this->commands = $commands;
-	}
-
-	public function getMeta() : TebexQueuedOfflineCommandsMeta{
-		return $this->meta;
-	}
-
-	/**
-	 * @return TebexQueuedOfflineCommand[]
-	 */
-	public function getCommands() : array{
-		return $this->commands;
-	}
+	public function __construct(
+		/** @readonly */ public TebexQueuedOfflineCommandsMeta $meta,
+		/** @readonly */ public array $commands
+	){}
 }

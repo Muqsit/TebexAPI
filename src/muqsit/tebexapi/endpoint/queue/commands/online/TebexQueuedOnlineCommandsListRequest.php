@@ -6,9 +6,10 @@ namespace muqsit\tebexapi\endpoint\queue\commands\online;
 
 use muqsit\tebexapi\connection\request\TebexGetRequest;
 use muqsit\tebexapi\connection\response\TebexResponse;
+use muqsit\tebexapi\utils\TebexCommand;
 
 /**
- * @phpstan-extends TebexGetRequest<TebexQueuedOnlineCommandsInfo>
+ * @extends TebexGetRequest<TebexQueuedOnlineCommandsInfo>
  */
 final class TebexQueuedOnlineCommandsListRequest extends TebexGetRequest{
 
@@ -27,10 +28,7 @@ final class TebexQueuedOnlineCommandsListRequest extends TebexGetRequest{
 	}
 
 	/**
-	 * @param array $response
-	 * @return TebexResponse
-	 *
-	 * @phpstan-param array{
+	 * @param array{
 	 * 		commands: array<array{
 	 * 			id: int,
 	 * 			command: string,
@@ -39,13 +37,14 @@ final class TebexQueuedOnlineCommandsListRequest extends TebexGetRequest{
 	 * 			conditions: array{delay: int, slots: int}
 	 * 		}>
 	 * } $response
+	 * @return TebexResponse
 	 */
 	public function createResponse(array $response) : TebexResponse{
 		$commands = [];
 		foreach($response["commands"] as $cmd){
 			$commands[] = new TebexQueuedOnlineCommand(
 				$cmd["id"],
-				$cmd["command"],
+				new TebexCommand($cmd["command"]),
 				$cmd["payment"],
 				$cmd["package"],
 				new TebexQueuedOnlineCommandConditions($cmd["conditions"]["delay"], $cmd["conditions"]["slots"])

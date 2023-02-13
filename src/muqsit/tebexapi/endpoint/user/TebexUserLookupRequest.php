@@ -8,7 +8,7 @@ use muqsit\tebexapi\connection\request\TebexGetRequest;
 use muqsit\tebexapi\connection\response\TebexResponse;
 
 /**
- * @phpstan-extends TebexGetRequest<TebexUser>
+ * @extends TebexGetRequest<TebexUser>
  */
 final class TebexUserLookupRequest extends TebexGetRequest{
 
@@ -27,10 +27,7 @@ final class TebexUserLookupRequest extends TebexGetRequest{
 	}
 
 	/**
-	 * @param array $response
-	 * @return TebexResponse
-	 *
-	 * @phpstan-param array{
+	 * @param array{
 	 * 		payments: array<array{txn_id: string, time: int, price: float, currency: string, status: int}>,
 	 * 		player: array{
 	 * 			id: string,
@@ -45,6 +42,7 @@ final class TebexUserLookupRequest extends TebexGetRequest{
 	 * 		chargebackRate: int,
 	 * 		purchaseTotals: array<string, float>
 	 * } $response
+	 * @return TebexResponse
 	 */
 	public function createResponse(array $response) : TebexResponse{
 		$payments = [];

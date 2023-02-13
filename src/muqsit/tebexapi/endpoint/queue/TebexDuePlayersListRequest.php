@@ -8,7 +8,7 @@ use muqsit\tebexapi\connection\request\TebexGetRequest;
 use muqsit\tebexapi\connection\response\TebexResponse;
 
 /**
- * @phpstan-extends TebexGetRequest<TebexDuePlayersInfo>
+ * @extends TebexGetRequest<TebexDuePlayersInfo>
  */
 final class TebexDuePlayersListRequest extends TebexGetRequest{
 
@@ -21,13 +21,11 @@ final class TebexDuePlayersListRequest extends TebexGetRequest{
 	}
 
 	/**
-	 * @param array<string, mixed> $response
-	 * @return TebexResponse
-	 *
-	 * @phpstan-param array{
+	 * @param array{
 	 * 		meta: array{execute_offline: bool, next_check: int, more: bool},
 	 * 		players: array<array<string, mixed>>
 	 * } $response
+	 * @return TebexResponse
 	 */
 	public function createResponse(array $response) : TebexResponse{
 		["meta" => $meta, "players" => $players_list] = $response;

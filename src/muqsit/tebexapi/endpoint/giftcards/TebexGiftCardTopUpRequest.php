@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace muqsit\tebexapi\endpoint\giftcards;
 
-use muqsit\tebexapi\connection\request\TebexDeleteRequest;
 use muqsit\tebexapi\connection\request\TebexPutRequest;
 use muqsit\tebexapi\connection\response\TebexResponse;
 
 /**
- * @phpstan-extends TebexPutRequest<TebexGiftCard>
+ * @extends TebexPutRequest<TebexGiftCard>
  */
 final class TebexGiftCardTopUpRequest extends TebexPutRequest{
 
@@ -30,10 +29,8 @@ final class TebexGiftCardTopUpRequest extends TebexPutRequest{
 	}
 
 	/**
-	 * @param array<string, mixed> $response
+	 * @param array{data: array<string, mixed>} $response
 	 * @return TebexResponse
-	 *
-	 * @phpstan-param array{data: array<string, mixed>} $response
 	 */
 	public function createResponse(array $response) : TebexResponse{
 		return TebexGiftCard::fromTebexResponse($response["data"]);

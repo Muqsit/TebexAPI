@@ -12,7 +12,7 @@ final class TebexCouponExpireInfo{
 	 */
 	public static function fromTebexResponse(array $response) : self{
 		/**
-		 * @phpstan-var array{
+		 * @var array{
 		 * 		redeem_unlimited: string,
 		 * 		expire_never: string,
 		 * 		limit: int,
@@ -28,31 +28,10 @@ final class TebexCouponExpireInfo{
 		);
 	}
 
-	private bool $redeem_unlimited;
-	private bool $expire_never;
-	private int $limit;
-	private int $date;
-
-	public function __construct(bool $redeem_unlimited, bool $expire_never, int $limit, int $date){
-		$this->redeem_unlimited = $redeem_unlimited;
-		$this->expire_never = $expire_never;
-		$this->limit = $limit;
-		$this->date = $date;
-	}
-
-	public function isRedeemLimited() : bool{
-		return !$this->redeem_unlimited;
-	}
-
-	public function canExpire() : bool{
-		return !$this->expire_never;
-	}
-
-	public function getLimit() : int{
-		return $this->limit;
-	}
-
-	public function getDate() : int{
-		return $this->date;
-	}
+	public function __construct(
+		/** @readonly */ public bool $redeem_unlimited,
+		/** @readonly */ public bool $expire_never,
+		/** @readonly */ public int $limit,
+		/** @readonly */ public int $date
+	){}
 }

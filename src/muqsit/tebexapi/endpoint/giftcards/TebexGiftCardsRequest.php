@@ -8,7 +8,7 @@ use muqsit\tebexapi\connection\request\TebexGetRequest;
 use muqsit\tebexapi\connection\response\TebexResponse;
 
 /**
- * @phpstan-extends TebexGetRequest<TebexGiftCardsList>
+ * @extends TebexGetRequest<TebexGiftCardsList>
  */
 final class TebexGiftCardsRequest extends TebexGetRequest{
 
@@ -24,10 +24,8 @@ final class TebexGiftCardsRequest extends TebexGetRequest{
 	}
 
 	/**
-	 * @param array<string, mixed> $response
+	 * @param array{data: array<array<string, mixed>>} $response
 	 * @return TebexResponse
-	 *
-	 * @phpstan-param array{data: array<array<string, mixed>>} $response
 	 */
 	public function createResponse(array $response) : TebexResponse{
 		return TebexGiftCardsList::fromTebexResponse($response["data"]);

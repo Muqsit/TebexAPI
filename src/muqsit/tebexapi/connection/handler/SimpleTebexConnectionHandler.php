@@ -66,7 +66,7 @@ final class SimpleTebexConnectionHandler implements TebexConnectionHandler{
 				}else{
 					$result = null;
 					try{
-						/** @phpstan-var array<string, mixed>|null $result */
+						/** @var array<string, mixed>|null $result */
 						$result = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
 					}catch(JsonException $e){
 						$result = null;

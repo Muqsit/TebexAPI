@@ -9,7 +9,7 @@ use muqsit\tebexapi\connection\response\TebexResponse;
 use muqsit\tebexapi\utils\TebexGuiItem;
 
 /**
- * @phpstan-extends TebexGetRequest<TebexListingInfo>
+ * @extends TebexGetRequest<TebexListingInfo>
  */
 final class TebexListingRequest extends TebexGetRequest{
 
@@ -23,10 +23,7 @@ final class TebexListingRequest extends TebexGetRequest{
 	}
 
 	/**
-	 * @param array $response
-	 * @return TebexResponse
-	 *
-	 * @phpstan-param array{
+	 * @param array{
 	 * 		categories: array<array{
 	 * 			packages: array,
 	 * 			subcategories: array<array{packages: array, id: int, order: int, name: string, gui_item: string|int}>,
@@ -37,6 +34,7 @@ final class TebexListingRequest extends TebexGetRequest{
 	 * 			only_subcategories: bool
 	 * 		}>
 	 * } $response
+	 * @return TebexResponse
 	 */
 	public function createResponse(array $response) : TebexResponse{
 		$categories = [];

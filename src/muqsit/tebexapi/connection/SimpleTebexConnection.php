@@ -35,28 +35,18 @@ final class SimpleTebexConnection implements TebexConnection{
 	/** @var Closure[] */
 	private array $disconnect_callbacks = [];
 
-	/**
-	 * @var mixed[]
-	 *
-	 * @phpstan-var array<int, mixed>
-	 */
+	/** @var array<int, mixed> */
 	private array $default_curl_options;
 
-	/** @phpstan-var SplQueue<TebexRequestHolder>  */
+	/** @var SplQueue<TebexRequestHolder>  */
 	private SplQueue $queued;
 
-	/**
-	 * @var TebexResponseHandler[]
-	 *
-	 * @phpstan-var array<int, TebexResponseHandler<TebexResponse>>
-	 */
+	/** @var array<int, TebexResponseHandler<TebexResponse>> */
 	private array $callbacks = [];
 
 	/**
 	 * @param TebexConnectionHandler $handler
-	 * @param mixed[] $default_curl_options
-	 *
-	 * @phpstan-param array<int, mixed> $default_curl_options
+	 * @param array<int, mixed> $default_curl_options
 	 */
 	public function __construct(TebexConnectionHandler $handler, array $default_curl_options){
 		$this->queued = new SplQueue();
@@ -65,9 +55,7 @@ final class SimpleTebexConnection implements TebexConnection{
 	}
 
 	/**
-	 * @param Closure $callback
-	 *
-	 * @phpstan-param Closure() : void $callback
+	 * @param Closure() : void $callback
 	 */
 	public function registerDisconnectCallback(Closure $callback) : void{
 		$this->disconnect_callbacks[] = $callback;

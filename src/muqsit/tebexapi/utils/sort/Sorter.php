@@ -10,6 +10,6 @@ final class Sorter{
 	 * @param Sortable[] $sortables
 	 */
 	public static function sort(array &$sortables) : void{
-		uasort($sortables, static function(Sortable $a, Sortable $b) : int{ return $a->getOrder() <=> $b->getOrder(); });
+		uasort($sortables, static fn(Sortable $a, Sortable $b) : int => $a->getOrder() <=> $b->getOrder());
 	}
 }

@@ -46,73 +46,17 @@ final class TebexCoupon implements TebexResponse{
 		);
 	}
 
-	private int $id;
-	private string $code;
-	private TebexEffectiveInfo $effective;
-	private TebexDiscountInfo $discount;
-	private TebexCouponExpireInfo $expire;
-	private string $basket_type;
-	private int $start_date;
-	private int $user_limit;
-	private int $minimum;
-	private ?string $username;
-	private string $note;
-
-	public function __construct(int $id, string $code, TebexEffectiveInfo $effective, TebexDiscountInfo $discount, TebexCouponExpireInfo $expire, string $basket_type, int $start_date, int $user_limit, int $minimum, ?string $username, string $note){
-		$this->id = $id;
-		$this->code = $code;
-		$this->effective = $effective;
-		$this->discount = $discount;
-		$this->expire = $expire;
-		$this->basket_type = $basket_type;
-		$this->start_date = $start_date;
-		$this->user_limit = $user_limit;
-		$this->minimum = $minimum;
-		$this->username = $username;
-		$this->note = $note;
-	}
-
-	public function getId() : int{
-		return $this->id;
-	}
-
-	public function getCode() : string{
-		return $this->code;
-	}
-
-	public function getEffective() : TebexEffectiveInfo{
-		return $this->effective;
-	}
-
-	public function getDiscount() : TebexDiscountInfo{
-		return $this->discount;
-	}
-
-	public function getExpire() : TebexCouponExpireInfo{
-		return $this->expire;
-	}
-
-	public function getBasketType() : string{
-		return $this->basket_type;
-	}
-
-	public function getStartDate() : int{
-		return $this->start_date;
-	}
-
-	public function getMinimum() : int{
-		return $this->minimum;
-	}
-
-	public function getUsername() : ?string{
-		return $this->username;
-	}
-
-	public function getUserLimit() : int{
-		return $this->user_limit;
-	}
-
-	public function getNote() : string{
-		return $this->note;
-	}
+	public function __construct(
+		/** @readonly */ public int $id,
+		/** @readonly */ public string $code,
+		/** @readonly */ public TebexEffectiveInfo $effective,
+		/** @readonly */ public TebexDiscountInfo $discount,
+		/** @readonly */ public TebexCouponExpireInfo $expire,
+		/** @readonly */ public string $basket_type,
+		/** @readonly */ public int $start_date,
+		/** @readonly */ public int $user_limit,
+		/** @readonly */ public int $minimum,
+		/** @readonly */ public ?string $username,
+		/** @readonly */ public string $note
+	){}
 }

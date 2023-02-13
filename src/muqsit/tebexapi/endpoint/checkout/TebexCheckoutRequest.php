@@ -8,7 +8,7 @@ use muqsit\tebexapi\connection\request\TebexPostRequest;
 use muqsit\tebexapi\connection\response\TebexResponse;
 
 /**
- * @phpstan-extends TebexPostRequest<TebexCheckoutInfo>
+ * @extends TebexPostRequest<TebexCheckoutInfo>
  */
 final class TebexCheckoutRequest extends TebexPostRequest{
 
@@ -36,10 +36,8 @@ final class TebexCheckoutRequest extends TebexPostRequest{
 	}
 
 	/**
-	 * @param array $response
+	 * @param array{url: string, expires: string} $response
 	 * @return TebexResponse
-	 *
-	 * @phpstan-param array{url: string, expires: string} $response
 	 */
 	public function createResponse(array $response) : TebexResponse{
 		return new TebexCheckoutInfo($response["url"], $response["expires"]);

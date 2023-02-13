@@ -9,10 +9,8 @@ use muqsit\tebexapi\connection\response\TebexResponse;
 final class TebexCouponsList implements TebexResponse{
 
 	/**
-	 * @param array<string, mixed> $response
+	 * @param  array{data: array<array<string, mixed>>} $response
 	 * @return self
-	 *
-	 * @phpstan-param  array{data: array<array<string, mixed>>} $response
 	 */
 	public static function fromTebexResponse(array $response) : self{
 		/**
@@ -25,35 +23,19 @@ final class TebexCouponsList implements TebexResponse{
 		$coupons = [];
 		foreach($response["data"] as $coupon_data){
 			$coupon = TebexCoupon::fromTebexResponse($coupon_data);
-			$coupons[$coupon->getId()] = $coupon;
+			$coupons[$coupon->id] = $coupon;
 		}
 		return new self(TebexCouponsListPagination::fromTebexResponse($response["pagination"]), $coupons);
 	}
-
-	private TebexCouponsListPagination $pagination;
-
-	/** @var TebexCoupon[] */
-	private array $coupons;
 
 	/**
 	 * @param TebexCouponsListPagination $pagination
 	 * @param TebexCoupon[] $coupons
 	 */
-	public function __construct(TebexCouponsListPagination $pagination, array $coupons){
-		$this->pagination = $pagination;
-		$this->coupons = $coupons;
-	}
-
-	public function getPagination() : TebexCouponsListPagination{
-		return $this->pagination;
-	}
-
-	/**
-	 * @return TebexCoupon[]
-	 */
-	public function getCoupons() : array{
-		return $this->coupons;
-	}
+	public function __construct(
+		/** @readonly */ public TebexCouponsListPagination $pagination,
+		/** @readonly */ public array $coupons
+	){}
 
 	public function getCoupon(int $id) : ?TebexCoupon{
 		return $this->coupons[$id] ?? null;

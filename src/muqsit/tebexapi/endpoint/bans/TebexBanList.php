@@ -8,20 +8,10 @@ use muqsit\tebexapi\connection\response\TebexResponse;
 
 final class TebexBanList implements TebexResponse{
 
-	/** @var TebexBanEntry[] */
-	private array $entries;
-
 	/**
 	 * @param TebexBanEntry[] $entries
 	 */
-	public function __construct(array $entries){
-		$this->entries = $entries;
-	}
-
-	/**
-	 * @return TebexBanEntry[]
-	 */
-	public function getAll() : array{
-		return $this->entries;
-	}
+	public function __construct(
+		/** @readonly */ public array $entries
+	){}
 }

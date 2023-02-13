@@ -8,7 +8,7 @@ use muqsit\tebexapi\connection\request\TebexPostRequest;
 use muqsit\tebexapi\connection\response\TebexResponse;
 
 /**
- * @phpstan-extends TebexPostRequest<TebexBanEntry>
+ * @extends TebexPostRequest<TebexBanEntry>
  */
 final class TebexBanRequest extends TebexPostRequest{
 

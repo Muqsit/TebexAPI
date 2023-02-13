@@ -8,7 +8,7 @@ use muqsit\tebexapi\connection\request\TebexGetRequest;
 use muqsit\tebexapi\connection\response\TebexResponse;
 
 /**
- * @phpstan-extends TebexGetRequest<TebexInformation>
+ * @extends TebexGetRequest<TebexInformation>
  */
 final class TebexInformationRequest extends TebexGetRequest{
 
@@ -21,10 +21,7 @@ final class TebexInformationRequest extends TebexGetRequest{
 	}
 
 	/**
-	 * @param array $response
-	 * @return TebexResponse
-	 *
-	 * @phpstan-param array{
+	 * @param array{
 	 * 		account: array{
 	 * 			id: int,
 	 * 			domain: string,
@@ -36,6 +33,7 @@ final class TebexInformationRequest extends TebexGetRequest{
 	 * 		},
 	 * 		server: array{id: int, name: string}
 	 * } $response
+	 * @return TebexResponse
 	 */
 	public function createResponse(array $response) : TebexResponse{
 		["account" => $account, "server" => $server] = $response;

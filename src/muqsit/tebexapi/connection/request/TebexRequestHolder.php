@@ -10,7 +10,7 @@ final class TebexRequestHolder{
 
 	public int $handler_id;
 
-	/** @phpstan-var TebexRequest<TebexResponse> */
+	/** @var TebexRequest<TebexResponse> */
 	public TebexRequest $request;
 
 	/**

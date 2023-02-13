@@ -6,6 +6,7 @@ namespace muqsit\tebexapi;
 
 use muqsit\tebexapi\connection\request\TebexRequest;
 use muqsit\tebexapi\connection\response\EmptyTebexResponse;
+use muqsit\tebexapi\connection\response\TebexResponse;
 use muqsit\tebexapi\connection\response\TebexResponseHandler;
 use muqsit\tebexapi\endpoint\bans\TebexBanEntry;
 use muqsit\tebexapi\endpoint\bans\TebexBanListRequest;
@@ -35,12 +36,9 @@ use muqsit\tebexapi\endpoint\user\TebexUserLookupRequest;
 abstract class BaseTebexApi implements TebexApi{
 
 	/**
-	 * @param TebexRequest $request
-	 * @param TebexResponseHandler $callback
-	 *
-	 * @phpstan-template TTebexResponse of \muqsit\tebexapi\connection\response\TebexResponse
-	 * @phpstan-param TebexRequest<TTebexResponse> $request
-	 * @phpstan-param TebexResponseHandler<TTebexResponse> $callback
+	 * @template TTebexResponse of TebexResponse
+	 * @param TebexRequest<TTebexResponse> $request
+	 * @param TebexResponseHandler<TTebexResponse> $callback
 	 */
 	abstract public function request(TebexRequest $request, TebexResponseHandler $callback) : void;
 

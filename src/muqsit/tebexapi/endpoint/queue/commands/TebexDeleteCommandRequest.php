@@ -9,7 +9,7 @@ use muqsit\tebexapi\connection\response\EmptyTebexResponse;
 use muqsit\tebexapi\connection\response\TebexResponse;
 
 /**
- * @phpstan-extends TebexDeleteRequest<EmptyTebexResponse>
+ * @extends TebexDeleteRequest<EmptyTebexResponse>
  */
 final class TebexDeleteCommandRequest extends TebexDeleteRequest{
 

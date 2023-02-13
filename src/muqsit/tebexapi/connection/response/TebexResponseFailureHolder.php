@@ -7,8 +7,8 @@ namespace muqsit\tebexapi\connection\response;
 use muqsit\tebexapi\utils\TebexException;
 
 /**
- * @phpstan-template TTebexResponse of TebexResponse
- * @phpstan-extends TebexResponseHolder<TTebexResponse>
+ * @template TTebexResponse of TebexResponse
+ * @extends TebexResponseHolder<TTebexResponse>
  */
 final class TebexResponseFailureHolder extends TebexResponseHolder{
 

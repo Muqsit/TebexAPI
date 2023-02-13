@@ -8,7 +8,7 @@ use muqsit\tebexapi\connection\request\TebexGetRequest;
 use muqsit\tebexapi\connection\response\TebexResponse;
 
 /**
- * @phpstan-extends TebexGetRequest<TebexCoupon>
+ * @extends TebexGetRequest<TebexCoupon>
  */
 final class TebexCouponRequest extends TebexGetRequest{
 
@@ -27,10 +27,8 @@ final class TebexCouponRequest extends TebexGetRequest{
 	}
 
 	/**
-	 * @param array<string, mixed> $response
+	 * @param array{data: array<string, mixed>} $response
 	 * @return TebexResponse
-	 *
-	 * @phpstan-param array{data: array<string, mixed>} $response
 	 */
 	public function createResponse(array $response) : TebexResponse{
 		return TebexCoupon::fromTebexResponse($response["data"]);

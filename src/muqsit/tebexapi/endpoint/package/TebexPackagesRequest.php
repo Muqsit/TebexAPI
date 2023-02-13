@@ -8,7 +8,7 @@ use muqsit\tebexapi\connection\request\TebexGetRequest;
 use muqsit\tebexapi\connection\response\TebexResponse;
 
 /**
- * @phpstan-extends TebexGetRequest<TebexPackages>
+ * @extends TebexGetRequest<TebexPackages>
  */
 final class TebexPackagesRequest extends TebexGetRequest{
 

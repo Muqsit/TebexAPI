@@ -10,10 +10,7 @@ use muqsit\tebexapi\utils\TebexGuiItem;
 final class TebexPackage implements Sortable{
 
 	/**
-	 * @param array<string, mixed> $response
-	 * @return static
-	 *
-	 * @phpstan-param array{
+	 * @param array{
 	 * 		id: int,
 	 * 		order: int,
 	 * 		name: string,
@@ -22,6 +19,7 @@ final class TebexPackage implements Sortable{
 	 * 		image: string|false,
 	 * 		gui_item: string|int
 	 * } $response
+	 * @return self
 	 */
 	public static function fromTebexData(array $response) : self{
 		return new self(
@@ -38,49 +36,17 @@ final class TebexPackage implements Sortable{
 		);
 	}
 
-	private int $id;
-	private int $order;
-	private string $name;
-	private string $price;
-	private TebexPackageSaleInfo $sale;
-	private ?string $image;
-	private TebexGuiItem $gui_item;
-
-	public function __construct(int $id, int $order, string $name, string $price, TebexPackageSaleInfo $sale, ?string $image, TebexGuiItem $gui_item){
-		$this->id = $id;
-		$this->order = $order;
-		$this->name = $name;
-		$this->price = $price;
-		$this->sale = $sale;
-		$this->image = $image;
-		$this->gui_item = $gui_item;
-	}
-
-	public function getId() : int{
-		return $this->id;
-	}
+	public function __construct(
+		/** @readonly */ public int $id,
+		/** @readonly */ public int $order,
+		/** @readonly */ public string $name,
+		/** @readonly */ public string $price,
+		/** @readonly */ public TebexPackageSaleInfo $sale,
+		/** @readonly */ public ?string $image,
+		/** @readonly */ public TebexGuiItem $gui_item
+	){}
 
 	public function getOrder() : int{
 		return $this->order;
-	}
-
-	public function getName() : string{
-		return $this->name;
-	}
-
-	public function getPrice() : string{
-		return $this->price;
-	}
-
-	public function getSale() : TebexPackageSaleInfo{
-		return $this->sale;
-	}
-
-	public function getImage() : ?string{
-		return $this->image;
-	}
-
-	public function getGuiItem() : TebexGuiItem{
-		return $this->gui_item;
 	}
 }

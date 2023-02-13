@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace muqsit\tebexapi\connection\request;
 
+use muqsit\tebexapi\connection\response\TebexResponse;
+
 /**
- * @phpstan-template TTebexResponse of \muqsit\tebexapi\connection\response\TebexResponse
- * @phpstan-implements TebexRequest<TTebexResponse>
+ * @template TTebexResponse of TebexResponse
+ * @implements TebexRequest<TTebexResponse>
  */
 abstract class TebexPostRequest implements TebexRequest{
 

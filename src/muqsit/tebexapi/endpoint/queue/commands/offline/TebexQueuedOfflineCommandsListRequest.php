@@ -7,9 +7,10 @@ namespace muqsit\tebexapi\endpoint\queue\commands\offline;
 use muqsit\tebexapi\connection\request\TebexGetRequest;
 use muqsit\tebexapi\connection\response\TebexResponse;
 use muqsit\tebexapi\endpoint\queue\TebexDuePlayer;
+use muqsit\tebexapi\utils\TebexCommand;
 
 /**
- * @phpstan-extends TebexGetRequest<TebexQueuedOfflineCommandsInfo>
+ * @extends TebexGetRequest<TebexQueuedOfflineCommandsInfo>
  */
 final class TebexQueuedOfflineCommandsListRequest extends TebexGetRequest{
 
@@ -22,10 +23,7 @@ final class TebexQueuedOfflineCommandsListRequest extends TebexGetRequest{
 	}
 
 	/**
-	 * @param array<string, mixed> $response
-	 * @return TebexResponse
-	 *
-	 * @phpstan-param array{
+	 * @param array{
 	 * 		commands: array<array{
 	 * 			id: int,
 	 * 			player: array<string, mixed>,
@@ -36,13 +34,14 @@ final class TebexQueuedOfflineCommandsListRequest extends TebexGetRequest{
 	 * 		}>,
 	 * 		meta: array{limited: bool}
 	 * } $response
+	 * @return TebexResponse
 	 */
 	public function createResponse(array $response) : TebexResponse{
 		$commands = [];
 		foreach($response["commands"] as $cmd){
 			$commands[] = new TebexQueuedOfflineCommand(
 				$cmd["id"],
-				$cmd["command"],
+				new TebexCommand($cmd["command"]),
 				$cmd["payment"],
 				$cmd["package"],
 				new TebexQueuedOfflineCommandConditions($cmd["conditions"]["delay"]),

@@ -8,7 +8,7 @@ use muqsit\tebexapi\connection\request\TebexDeleteRequest;
 use muqsit\tebexapi\connection\response\TebexResponse;
 
 /**
- * @phpstan-extends TebexDeleteRequest<TebexGiftCard>
+ * @extends TebexDeleteRequest<TebexGiftCard>
  */
 final class TebexGiftCardDeleteRequest extends TebexDeleteRequest{
 
@@ -27,10 +27,8 @@ final class TebexGiftCardDeleteRequest extends TebexDeleteRequest{
 	}
 
 	/**
-	 * @param array<string, mixed> $response
+	 * @param array{data: array<string, mixed>} $response
 	 * @return TebexResponse
-	 *
-	 * @phpstan-param array{data: array<string, mixed>} $response
 	 */
 	public function createResponse(array $response) : TebexResponse{
 		return TebexGiftCard::fromTebexResponse($response["data"]);

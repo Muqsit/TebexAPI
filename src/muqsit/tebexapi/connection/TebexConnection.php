@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace muqsit\tebexapi\connection;
 
 use muqsit\tebexapi\connection\request\TebexRequest;
+use muqsit\tebexapi\connection\response\TebexResponse;
 use muqsit\tebexapi\connection\response\TebexResponseHandler;
 
 /**
@@ -17,12 +18,9 @@ interface TebexConnection{
 	 * Queues a request to be fulfilled, and notifies the callback
 	 * with the result.
 	 *
-	 * @param TebexRequest $request
-	 * @param TebexResponseHandler $callback
-	 *
-	 * @phpstan-template TTebexResponse of \muqsit\tebexapi\connection\response\TebexResponse
-	 * @phpstan-param TebexRequest<TTebexResponse> $request
-	 * @phpstan-param TebexResponseHandler<TTebexResponse> $callback
+	 * @template TTebexResponse of TebexResponse
+	 * @param TebexRequest<TTebexResponse> $request
+	 * @param TebexResponseHandler<TTebexResponse> $callback
 	 */
 	public function request(TebexRequest $request, TebexResponseHandler $callback) : void;
 

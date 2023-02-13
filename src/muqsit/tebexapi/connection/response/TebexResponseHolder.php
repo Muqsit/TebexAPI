@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace muqsit\tebexapi\connection\response;
 
 /**
- * @phpstan-template TTebexResponse of TebexResponse
+ * @template TTebexResponse of TebexResponse
  */
 abstract class TebexResponseHolder{
 
@@ -18,9 +18,7 @@ abstract class TebexResponseHolder{
 	}
 
 	/**
-	 * @param TebexResponseHandler $handler
-	 *
-	 * @phpstan-param TebexResponseHandler<TTebexResponse> $handler
+	 * @param TebexResponseHandler<TTebexResponse> $handler
 	 */
 	abstract public function trigger(TebexResponseHandler $handler) : void;
 }
