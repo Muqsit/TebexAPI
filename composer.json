@@ -10,5 +10,11 @@
         "psr-4": {
             "muqsit\\tebexapi\\": "src/"
         }
+    },
+    "extra":{
+        "virion": {
+            "spec": "3.0",
+            "namespace-root": "poggit\\libasynql"
+        }
     }
 }
