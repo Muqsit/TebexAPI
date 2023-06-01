@@ -20,7 +20,8 @@ final class TebexResponseHandler{
 	 */
 	public static function debug(string $expected_response_class = TebexResponse::class) : self{
 		/** @var Closure(UTebexResponse) : void $on_success */
-		return self::onSuccess(var_dump(...));
+		$on_success = var_dump(...);
+		return self::onSuccess($on_success);
 	}
 
 	/**

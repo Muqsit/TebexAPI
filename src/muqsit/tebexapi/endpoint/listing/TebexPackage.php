@@ -10,18 +10,21 @@ use muqsit\tebexapi\utils\TebexGuiItem;
 final class TebexPackage implements Sortable{
 
 	/**
-	 * @param array{
-	 * 		id: int,
-	 * 		order: int,
-	 * 		name: string,
-	 * 		price: string,
-	 * 		sale: array{active: bool, discount: string},
-	 * 		image: string|false,
-	 * 		gui_item: string|int
-	 * } $response
+	 * @param array<string, mixed> $response
 	 * @return self
 	 */
 	public static function fromTebexData(array $response) : self{
+		/**
+		 * @var array{
+		 * 		id: int,
+		 * 		order: int,
+		 * 		name: string,
+		 * 		price: string,
+		 * 		sale: array{active: bool, discount: string},
+		 * 		image: string|false,
+		 * 		gui_item: string|int
+		 * } $response
+		 */
 		return new self(
 			$response["id"],
 			$response["order"],

@@ -21,12 +21,13 @@ final class TebexBanListRequest extends TebexGetRequest{
 	}
 
 	/**
-	 * @param array{data: array} $response
+	 * @param array{data: mixed[]} $response
 	 * @return TebexResponse
 	 */
 	public function createResponse(array $response) : TebexResponse{
 		$entries = [];
 		foreach($response["data"] as $entry){
+			/** @var array<string, mixed> $entry */
 			$entries[] = TebexBanEntry::fromTebexResponse($entry);
 		}
 		return new TebexBanList($entries);

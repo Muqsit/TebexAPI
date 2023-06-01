@@ -31,7 +31,7 @@ final class TebexBanRequest extends TebexPostRequest{
 	}
 
 	/**
-	 * @param array{data: array} $response
+	 * @param array{data: mixed[]} $response
 	 * @return TebexResponse
 	 */
 	public function createResponse(array $response) : TebexResponse{

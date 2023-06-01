@@ -21,7 +21,7 @@ final class TebexCouponsRequest extends TebexGetRequest{
 	}
 
 	/**
-	 * @param array{data: array<string, mixed>} $response
+	 * @param array{data: array<array<string, mixed>>} $response
 	 * @return TebexResponse
 	 */
 	public function createResponse(array $response) : TebexResponse{

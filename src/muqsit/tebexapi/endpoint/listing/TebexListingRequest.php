@@ -23,23 +23,28 @@ final class TebexListingRequest extends TebexGetRequest{
 	}
 
 	/**
-	 * @param array{
-	 * 		categories: array<array{
-	 * 			packages: array,
-	 * 			subcategories: array<array{packages: array, id: int, order: int, name: string, gui_item: string|int}>,
-	 * 			id: int,
-	 * 			order: int,
-	 * 			name: string,
-	 * 			gui_item: string|int,
-	 * 			only_subcategories: bool
-	 * 		}>
-	 * } $response
+	 * @param array<string, mixed> $response
 	 * @return TebexResponse
 	 */
 	public function createResponse(array $response) : TebexResponse{
+		/**
+		 * @var array{
+		 * 		categories: array<array{
+		 * 			packages: array<string, mixed>,
+		 * 			subcategories: array<array{packages: array<string, mixed>, id: int, order: int, name: string, gui_item: string|int}>,
+		 * 			id: int,
+		 * 			order: int,
+		 * 			name: string,
+		 * 			gui_item: string|int,
+		 * 			only_subcategories: bool
+		 * 		}>
+		 * } $response
+		 */
+
 		$categories = [];
 		foreach($response["categories"] as $entry){
 			$packages = [];
+			/** @var array<string, mixed> $package */
 			foreach($entry["packages"] as $package){
 				$packages[] = TebexPackage::fromTebexData($package);
 			}
@@ -47,6 +52,7 @@ final class TebexListingRequest extends TebexGetRequest{
 			$subcategories = [];
 			foreach($entry["subcategories"] as $subcategory){
 				$subcategory_packages = [];
+				/** @var array<string, mixed> $package */
 				foreach($subcategory["packages"] as $package){
 					$subcategory_packages[] = TebexPackage::fromTebexData($package);
 				}
