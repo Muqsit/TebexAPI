@@ -12,6 +12,6 @@ final class TebexQueuedOnlineCommandsInfo implements TebexResponse{
 	 * @param TebexQueuedOnlineCommand[] $commands
 	 */
 	public function __construct(
-		/** @readonly */ public array $commands
+		readonly public array $commands
 	){}
 }

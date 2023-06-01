@@ -14,7 +14,7 @@ final class TebexQueuedOnlineCommand extends TebexQueuedCommand{
 		TebexCommand $command,
 		?int $payment_id,
 		?int $package_id,
-		/** @readonly */ public TebexQueuedOnlineCommandConditions $conditions
+		readonly public TebexQueuedOnlineCommandConditions $conditions
 	){
 		parent::__construct($id, $command, $payment_id, $package_id);
 	}

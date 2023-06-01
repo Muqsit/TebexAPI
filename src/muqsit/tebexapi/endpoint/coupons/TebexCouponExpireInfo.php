@@ -29,9 +29,9 @@ final class TebexCouponExpireInfo{
 	}
 
 	public function __construct(
-		/** @readonly */ public bool $redeem_unlimited,
-		/** @readonly */ public bool $expire_never,
-		/** @readonly */ public int $limit,
-		/** @readonly */ public int $date
+		readonly public bool $redeem_unlimited,
+		readonly public bool $expire_never,
+		readonly public int $limit,
+		readonly public int $date
 	){}
 }

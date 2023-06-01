@@ -10,7 +10,7 @@ final class TebexQueuedOnlineCommandConditions extends TebexQueuedCommandConditi
 
 	public function __construct(
 		int $delay,
-		/** @readonly */ public int $slots
+		readonly public int $slots
 	){
 		parent::__construct($delay);
 	}

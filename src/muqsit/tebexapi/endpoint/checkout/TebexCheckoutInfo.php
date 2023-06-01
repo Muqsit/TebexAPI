@@ -9,7 +9,7 @@ use muqsit\tebexapi\connection\response\TebexResponse;
 final class TebexCheckoutInfo implements TebexResponse{
 
 	public function __construct(
-		/** @readonly */ public string $url,
-		/** @readonly */ public string $expires
+		readonly public string $url,
+		readonly public string $expires
 	){}
 }

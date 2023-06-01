@@ -9,7 +9,7 @@ use muqsit\tebexapi\connection\response\TebexResponse;
 final class TebexInformation implements TebexResponse{
 
 	public function __construct(
-		/** @readonly */ public TebexAccountInformation $account,
-		/** @readonly */ public TebexServerInformation $server
+		readonly public TebexAccountInformation $account,
+		readonly public TebexServerInformation $server
 	){}
 }

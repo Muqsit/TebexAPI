@@ -25,7 +25,7 @@ final class TebexGiftCardsList implements TebexResponse{
 	 * @param array<int, TebexGiftCard> $gift_cards
 	 */
 	public function __construct(
-		/** @readonly */ public array $gift_cards
+		readonly public array $gift_cards
 	){}
 
 	public function getGiftCard(int $id) : ?TebexGiftCard{

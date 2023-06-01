@@ -23,8 +23,8 @@ final class TebexCategory extends BaseTebexCategory{
 		string $name,
 		array $packages,
 		TebexGuiItem $gui_item,
-		/** @readonly */ public bool $only_subcategories,
-		/** @readonly */ public array $subcategories
+		readonly public bool $only_subcategories,
+		readonly public array $subcategories
 	){
 		parent::__construct($id, $order, $name, $packages, $gui_item);
 	}

@@ -38,11 +38,11 @@ final class TebexBanEntry implements TebexResponse{
 	}
 
 	public function __construct(
-		/** @readonly */ public int $id,
-		/** @readonly */ public string $time,
-		/** @readonly */ public string $ip,
-		/** @readonly */ public string $payment_email,
-		/** @readonly */ public string $reason,
-		/** @readonly */ public ?TebexBanEntryUser $user
+		readonly public int $id,
+		readonly public string $time,
+		readonly public string $ip,
+		readonly public string $payment_email,
+		readonly public string $reason,
+		readonly public ?TebexBanEntryUser $user
 	){}
 }

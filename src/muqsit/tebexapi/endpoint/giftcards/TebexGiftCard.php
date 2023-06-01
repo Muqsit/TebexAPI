@@ -18,10 +18,10 @@ final class TebexGiftCard implements TebexResponse{
 	}
 
 	public function __construct(
-		/** @readonly */ public int $id,
-		/** @readonly */ public string $code,
-		/** @readonly */ public TebexGiftCardBalance $balance,
-		/** @readonly */ public string $note,
-		/** @readonly */ public bool $void
+		readonly public int $id,
+		readonly public string $code,
+		readonly public TebexGiftCardBalance $balance,
+		readonly public string $note,
+		readonly public bool $void
 	){}
 }

@@ -37,13 +37,13 @@ final class TebexPackage implements Sortable{
 	}
 
 	public function __construct(
-		/** @readonly */ public int $id,
-		/** @readonly */ public int $order,
-		/** @readonly */ public string $name,
-		/** @readonly */ public string $price,
-		/** @readonly */ public TebexPackageSaleInfo $sale,
-		/** @readonly */ public ?string $image,
-		/** @readonly */ public TebexGuiItem $gui_item
+		readonly public int $id,
+		readonly public int $order,
+		readonly public string $name,
+		readonly public string $price,
+		readonly public TebexPackageSaleInfo $sale,
+		readonly public ?string $image,
+		readonly public TebexGuiItem $gui_item
 	){}
 
 	public function getOrder() : int{

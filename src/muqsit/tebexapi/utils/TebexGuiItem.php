@@ -7,6 +7,6 @@ namespace muqsit\tebexapi\utils;
 final class TebexGuiItem{
 
 	public function __construct(
-		/** @readonly */ public string $value
+		readonly public string $value
 	){}
 }

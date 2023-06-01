@@ -13,7 +13,7 @@ final class TebexDuePlayersInfo implements TebexResponse{
 	 * @param TebexDuePlayer[] $players
 	 */
 	public function __construct(
-		/** @readonly */ public TebexDuePlayersMeta $meta,
-		/** @readonly */ public array $players
+		readonly public TebexDuePlayersMeta $meta,
+		readonly public array $players
 	){}
 }

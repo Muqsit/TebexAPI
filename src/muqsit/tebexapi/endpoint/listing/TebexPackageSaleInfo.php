@@ -7,8 +7,8 @@ namespace muqsit\tebexapi\endpoint\listing;
 final class TebexPackageSaleInfo{
 
 	public function __construct(
-		/** @readonly */ public bool $active,
-		/** @readonly */ public string $discount
+		readonly public bool $active,
+		readonly public string $discount
 	){}
 
 	public function getPostDiscountPrice(string $price) : string{

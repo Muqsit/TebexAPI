@@ -25,8 +25,8 @@ final class TebexEffectiveInfo{
 	 * @param int[] $category_ids
 	 */
 	public function __construct(
-		/** @readonly */ public string $type,
-		/** @readonly */ public array $package_ids,
-		/** @readonly */ public array $category_ids
+		readonly public string $type,
+		readonly public array $package_ids,
+		readonly public array $category_ids
 	){}
 }

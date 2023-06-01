@@ -47,16 +47,16 @@ final class TebexCoupon implements TebexResponse{
 	}
 
 	public function __construct(
-		/** @readonly */ public int $id,
-		/** @readonly */ public string $code,
-		/** @readonly */ public TebexEffectiveInfo $effective,
-		/** @readonly */ public TebexDiscountInfo $discount,
-		/** @readonly */ public TebexCouponExpireInfo $expire,
-		/** @readonly */ public string $basket_type,
-		/** @readonly */ public int $start_date,
-		/** @readonly */ public int $user_limit,
-		/** @readonly */ public int $minimum,
-		/** @readonly */ public ?string $username,
-		/** @readonly */ public string $note
+		readonly public int $id,
+		readonly public string $code,
+		readonly public TebexEffectiveInfo $effective,
+		readonly public TebexDiscountInfo $discount,
+		readonly public TebexCouponExpireInfo $expire,
+		readonly public string $basket_type,
+		readonly public int $start_date,
+		readonly public int $user_limit,
+		readonly public int $minimum,
+		readonly public ?string $username,
+		readonly public string $note
 	){}
 }

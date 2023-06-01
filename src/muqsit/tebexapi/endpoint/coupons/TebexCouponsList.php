@@ -33,8 +33,8 @@ final class TebexCouponsList implements TebexResponse{
 	 * @param TebexCoupon[] $coupons
 	 */
 	public function __construct(
-		/** @readonly */ public TebexCouponsListPagination $pagination,
-		/** @readonly */ public array $coupons
+		readonly public TebexCouponsListPagination $pagination,
+		readonly public array $coupons
 	){}
 
 	public function getCoupon(int $id) : ?TebexCoupon{

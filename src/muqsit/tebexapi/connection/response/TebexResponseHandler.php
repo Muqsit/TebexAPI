@@ -20,8 +20,7 @@ final class TebexResponseHandler{
 	 */
 	public static function debug(string $expected_response_class = TebexResponse::class) : self{
 		/** @var Closure(UTebexResponse) : void $on_success */
-		$on_success = Closure::fromCallable("var_dump");
-		return self::onSuccess($on_success);
+		return self::onSuccess(var_dump(...));
 	}
 
 	/**
@@ -30,9 +29,7 @@ final class TebexResponseHandler{
 	 * @return TebexResponseHandler<UTebexResponse>
 	 */
 	public static function onSuccess(Closure $on_success) : self{
-		return new self($on_success, static function(TebexException $exception) : void{
-			TebexApiStatics::getLogger()->exception($exception);
-		});
+		return new self($on_success, TebexApiStatics::getLogger()->exception(...));
 	}
 
 	/** @var Closure(TTebexResponse) : void */

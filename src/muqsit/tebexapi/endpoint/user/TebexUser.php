@@ -16,10 +16,10 @@ final class TebexUser implements TebexResponse{
 	 * @param TebexPurchaseTotals $purchase_totals
 	 */
 	public function __construct(
-		/** @readonly */ public TebexPlayer $player,
-		/** @readonly */ public int $ban_count,
-		/** @readonly */ public int $chargeback_rate,
-		/** @readonly */ public array $payments,
-		/** @readonly */ public TebexPurchaseTotals $purchase_totals
+		readonly public TebexPlayer $player,
+		readonly public int $ban_count,
+		readonly public int $chargeback_rate,
+		readonly public array $payments,
+		readonly public TebexPurchaseTotals $purchase_totals
 	){}
 }

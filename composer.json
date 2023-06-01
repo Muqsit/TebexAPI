@@ -4,7 +4,7 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "php": "^8.0"
+        "php": "^8.1"
     },
     "autoload": {
         "psr-4": {
@@ -14,7 +14,7 @@
     "extra":{
         "virion": {
             "spec": "3.0",
-            "namespace-root": "poggit\\libasynql"
+            "namespace-root": "muqsit\\tebexapi"
         }
     }
 }

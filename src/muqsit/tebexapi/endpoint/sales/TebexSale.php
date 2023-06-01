@@ -10,11 +10,11 @@ use muqsit\tebexapi\utils\TebexEffectiveInfo;
 final class TebexSale{
 
 	public function __construct(
-		/** @readonly */ public int $id,
-		/** @readonly */ public TebexEffectiveInfo $effective,
-		/** @readonly */ public TebexDiscountInfo $discount,
-		/** @readonly */ public int $start,
-		/** @readonly */ public int $expire,
-		/** @readonly */ public int $order
+		readonly public int $id,
+		readonly public TebexEffectiveInfo $effective,
+		readonly public TebexDiscountInfo $discount,
+		readonly public int $start,
+		readonly public int $expire,
+		readonly public int $order
 	){}
 }

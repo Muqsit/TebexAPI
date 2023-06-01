@@ -12,6 +12,6 @@ final class TebexBanList implements TebexResponse{
 	 * @param TebexBanEntry[] $entries
 	 */
 	public function __construct(
-		/** @readonly */ public array $entries
+		readonly public array $entries
 	){}
 }

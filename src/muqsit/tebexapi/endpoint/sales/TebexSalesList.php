@@ -12,6 +12,6 @@ final class TebexSalesList implements TebexResponse{
 	 * @param TebexSale[] $sales
 	 */
 	public function __construct(
-		/** @readonly */ public array $sales
+		readonly public array $sales
 	){}
 }

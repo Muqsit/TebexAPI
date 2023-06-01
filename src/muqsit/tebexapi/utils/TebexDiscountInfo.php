@@ -27,8 +27,8 @@ final class TebexDiscountInfo{
 	}
 
 	public function __construct(
-		/** @readonly */ public string $type,
-		/** @readonly */ public int $percentage,
-		/** @readonly */ public int $value
+		readonly public string $type,
+		readonly public int $percentage,
+		readonly public int $value
 	){}
 }

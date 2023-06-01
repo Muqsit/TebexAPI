@@ -7,6 +7,6 @@ namespace muqsit\tebexapi\endpoint\queue\commands;
 abstract class TebexQueuedCommandConditions{
 
 	public function __construct(
-		/** @readonly */ public int $delay
+		readonly public int $delay
 	){}
 }

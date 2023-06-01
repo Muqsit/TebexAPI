@@ -17,8 +17,8 @@ final class TebexTime{
 	}
 
 	public function __construct(
-		/** @readonly */ public int $value,
-		/** @readonly */ public TebexTimeUnit $unit
+		readonly public int $value,
+		readonly public TebexTimeUnit $unit
 	){}
 
 	public function toSeconds() : int{

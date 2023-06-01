@@ -17,11 +17,11 @@ abstract class BaseTebexCategory implements Sortable{
 	 * @param TebexGuiItem $gui_item
 	 */
 	public function __construct(
-		/** @readonly */ public int $id,
-		/** @readonly */ public int $order,
-		/** @readonly */ public string $name,
-		/** @readonly */ public array $packages,
-		/** @readonly */ public TebexGuiItem $gui_item
+		readonly public int $id,
+		readonly public int $order,
+		readonly public string $name,
+		readonly public array $packages,
+		readonly public TebexGuiItem $gui_item
 	){}
 
 	final public function getOrder() : int{

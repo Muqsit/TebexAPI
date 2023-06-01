@@ -12,6 +12,6 @@ final class TebexListingInfo implements TebexResponse{
 	 * @param TebexCategory[] $categories
 	 */
 	public function __construct(
-		/** @readonly */ public array $categories
+		readonly public array $categories
 	){}
 }

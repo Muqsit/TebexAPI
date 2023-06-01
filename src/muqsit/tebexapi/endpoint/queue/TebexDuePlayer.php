@@ -16,8 +16,8 @@ final class TebexDuePlayer{
 	}
 
 	public function __construct(
-		/** @readonly */ public int $id,
-		/** @readonly */ public string $name,
-		/** @readonly */ public ?string $uuid
+		readonly public int $id,
+		readonly public string $name,
+		readonly public ?string $uuid
 	){}
 }

@@ -24,7 +24,7 @@ final class SimpleTebexConnection implements TebexConnection{
 		$handler ??= new SimpleTebexConnectionHandler();
 
 		$instance = new self($handler, TebexConnectionHelper::buildDefaultCurlOptions($secret, $configuration->getCAInfoPath()));
-		$instance->registerDisconnectCallback(static function() use($configuration) : void{ $configuration->close(); });
+		$instance->registerDisconnectCallback($configuration->close(...));
 		return $instance;
 	}
 

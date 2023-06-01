@@ -12,6 +12,6 @@ final class TebexPackages implements TebexResponse{
 	 * @param TebexPackage[] $packages
 	 */
 	public function __construct(
-		/** @readonly */ public array $packages
+		readonly public array $packages
 	){}
 }

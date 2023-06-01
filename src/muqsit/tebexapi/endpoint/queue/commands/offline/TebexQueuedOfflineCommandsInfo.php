@@ -13,7 +13,7 @@ final class TebexQueuedOfflineCommandsInfo implements TebexResponse{
 	 * @param TebexQueuedOfflineCommand[] $commands
 	 */
 	public function __construct(
-		/** @readonly */ public TebexQueuedOfflineCommandsMeta $meta,
-		/** @readonly */ public array $commands
+		readonly public TebexQueuedOfflineCommandsMeta $meta,
+		readonly public array $commands
 	){}
 }

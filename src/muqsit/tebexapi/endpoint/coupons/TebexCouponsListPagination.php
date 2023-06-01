@@ -25,10 +25,10 @@ final class TebexCouponsListPagination{
 	}
 
 	public function __construct(
-		/** @readonly */ public int $total,
-		/** @readonly */ public int $current_page,
-		/** @readonly */ public int $last_page,
-		/** @readonly */ public ?int $previous,
-		/** @readonly */ public ?string $next_url
+		readonly public int $total,
+		readonly public int $current_page,
+		readonly public int $last_page,
+		readonly public ?int $previous,
+		readonly public ?string $next_url
 	){}
 }
