@@ -6,14 +6,16 @@ namespace muqsit\tebexapi\connection\handler;
 
 use JsonException;
 use muqsit\tebexapi\connection\request\TebexRequestHolder;
-use muqsit\tebexapi\connection\response\TebexResponseFailureHolder;
 use muqsit\tebexapi\connection\response\TebexResponseHolder;
 use muqsit\tebexapi\connection\response\TebexResponseSuccessHolder;
 use muqsit\tebexapi\TebexApiStatics;
 use muqsit\tebexapi\utils\TebexException;
 use muqsit\tebexapi\utils\UnexpectedResponseCodeTebexException;
-use RuntimeException;
-use Throwable;
+use function array_key_exists;
+use function base64_encode;
+use function curl_errno;
+use function curl_error;
+use function is_string;
 
 /**
  * A simple implementation of a cURL handler.
@@ -22,77 +24,54 @@ final class SimpleTebexConnectionHandler implements TebexConnectionHandler{
 
 	public function handle(TebexRequestHolder $request_holder, array $default_curl_options) : TebexResponseHolder{
 		$request = $request_holder->request;
+		$ch = curl_init(TebexApiStatics::ENDPOINT . $request->getEndpoint());
+		$ch !== false || throw new TebexException("cURL request failed during initialization", 5000);
+		try{
+			$curl_opts = $default_curl_options;
+			$request->addAdditionalCurlOpts($curl_opts);
+			curl_setopt_array($ch, $curl_opts);
 
-		$url = TebexApiStatics::ENDPOINT . $request->getEndpoint();
+			$body = curl_exec($ch);
 
-		$latency = 5000;
-		$ch = curl_init($url);
-		if($ch === false){
-			$response_holder = new TebexResponseFailureHolder($request_holder->handler_id, $latency, new TebexException("cURL request failed during initialization"));
-		}else{
-			$body = false;
-			try{
-				$curl_opts = $default_curl_options;
-				$request->addAdditionalCurlOpts($curl_opts);
-				curl_setopt_array($ch, $curl_opts);
+			/** @var float $latency */
+			$latency = curl_getinfo($ch, CURLINFO_TOTAL_TIME);
 
-				$body = curl_exec($ch);
+			is_string($body) || throw new TebexException("cURL request failed {" . curl_errno($ch) . "): " . curl_error($ch));
 
-				/** @var float $latency */
-				$latency = curl_getinfo($ch, CURLINFO_TOTAL_TIME);
+			/** @var int $response_code */
+			$response_code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
 
-				if(!is_string($body)){
-					throw new TebexException("cURL request failed {" . curl_errno($ch) . "): " . curl_error($ch));
+			if($response_code !== $request->getExpectedResponseCode()){
+				try{
+					/** @var array{error_message: string} $message_body */
+					$message_body = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
+				}catch(JsonException){
+					$message_body = [];
 				}
-
-				/** @var int $response_code */
-				$response_code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
-
-				if($response_code !== $request->getExpectedResponseCode()){
-					try{
-						/** @var array{error_message: string} $message_body */
-						$message_body = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
-					}catch(JsonException $e){
-						$message_body = [];
-					}
-					if(array_key_exists("error_message", $message_body)){
-						throw new TebexException($message_body["error_message"]);
-					}
-					throw UnexpectedResponseCodeTebexException::fromResponseCode($request->getExpectedResponseCode(), $response_code);
-				}
-
-				if($body === ""){
-					$result = [];
-				}else{
-					$result = null;
-					try{
-						/** @var array<string, mixed>|null $result */
-						$result = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
-					}catch(JsonException $e){
-						$result = null;
-						throw new TebexException("{$e->getMessage()} during parsing JSON body: " . base64_encode($body));
-					}
-
-					if($result === null){
-						throw new TebexException("Error during parsing JSON body: " . base64_encode($body));
-					}
-				}
-
-				if(isset($result["error_code"], $result["error_message"])){
-					assert(is_string($result["error_message"]));
-					throw new TebexException($result["error_message"]);
-				}
-
-				$response_holder = new TebexResponseSuccessHolder($request_holder->handler_id, $latency, $request->createResponse($result));
-			}catch(TebexException $e){
-				$response_holder = new TebexResponseFailureHolder($request_holder->handler_id, $latency, $e);
-			}catch(Throwable $e){
-				throw new RuntimeException("An error occurred while parsing request: " . (is_string($body) ? base64_encode($body) : json_encode($body, JSON_THROW_ON_ERROR)), is_int($e->getCode()) ? $e->getCode() : 0, $e);
-			}finally{
-				curl_close($ch);
+				!array_key_exists("error_message", $message_body) || throw new TebexException($message_body["error_message"]);
+				throw UnexpectedResponseCodeTebexException::fromResponseCode($request->getExpectedResponseCode(), $response_code);
 			}
-		}
 
-		return $response_holder;
+			if($body === ""){
+				$result = [];
+			}else{
+				try{
+					/** @var array<string, mixed>|null $result */
+					$result = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
+				}catch(JsonException $e){
+					throw new TebexException("{$e->getMessage()} during parsing JSON body: " . base64_encode($body));
+				}
+				$result !== null || throw new TebexException("Error during parsing JSON body: " . base64_encode($body));
+			}
+
+			if(isset($result["error_code"], $result["error_message"])){
+				assert(is_string($result["error_message"]));
+				throw new TebexException($result["error_message"]);
+			}
+
+			return new TebexResponseSuccessHolder($request_holder->handler_id, $latency, $request->createResponse($result));
+		}finally{
+			curl_close($ch);
+		}
 	}
 }

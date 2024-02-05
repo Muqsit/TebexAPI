@@ -14,8 +14,8 @@ final class TebexResponseFailureHolder extends TebexResponseHolder{
 
 	private TebexException $exception;
 
-	public function __construct(int $handler_id, float $latency, TebexException $exception){
-		parent::__construct($handler_id, $latency);
+	public function __construct(int $handler_id, TebexException $exception){
+		parent::__construct($handler_id, $exception->getLatency());
 		$this->exception = $exception;
 	}
 
