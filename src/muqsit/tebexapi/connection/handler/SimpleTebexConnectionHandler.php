@@ -48,7 +48,7 @@ final class SimpleTebexConnectionHandler implements TebexConnectionHandler{
 				}catch(JsonException){
 					$message_body = [];
 				}
-				!array_key_exists("error_message", $message_body) || throw new TebexException($message_body["error_message"]);
+				!array_key_exists("error_message", $message_body) || throw new TebexException($message_body["error_message"], $latency, $message_body["error_code"] ?? 0);
 				throw UnexpectedResponseCodeTebexException::fromResponseCode($request->getExpectedResponseCode(), $response_code);
 			}
 
@@ -66,7 +66,7 @@ final class SimpleTebexConnectionHandler implements TebexConnectionHandler{
 
 			if(isset($result["error_code"], $result["error_message"])){
 				assert(is_string($result["error_message"]));
-				throw new TebexException($result["error_message"]);
+				throw new TebexException($result["error_message"], $latency, $result["error_code"]);
 			}
 
 			return new TebexResponseSuccessHolder($request_holder->handler_id, $latency, $request->createResponse($result));

@@ -12,14 +12,20 @@ use muqsit\tebexapi\utils\TebexException;
  */
 final class TebexResponseFailureHolder extends TebexResponseHolder{
 
-	private TebexException $exception;
+	readonly public string $error;
+	readonly public int $code;
+	readonly public string $trace;
 
-	public function __construct(int $handler_id, TebexException $exception){
-		parent::__construct($handler_id, $exception->getLatency());
-		$this->exception = $exception;
+	public function __construct(int $handler_id, float $latency, string $error, int $code, string $trace){
+		parent::__construct($handler_id, $latency);
+		$this->error = $error;
+		$this->code = $code;
+		$this->trace = $trace;
 	}
 
 	public function trigger(TebexResponseHandler $handler) : void{
-		($handler->on_failure)($this->exception);
+		$exception = new TebexException($this->error, $this->latency, $this->code, null);
+		$exception->extra_trace = $this->trace;
+		($handler->on_failure)($exception);
 	}
 }
