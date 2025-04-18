@@ -16,7 +16,7 @@ final class TebexGiftCardsRequest extends TebexGetRequest{
 	}
 
 	public function getEndpoint() : string{
-		return "/giftcards";
+		return "/gift-cards";
 	}
 
 	public function getExpectedResponseCode() : int{

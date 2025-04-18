@@ -23,7 +23,7 @@ final class TebexGiftCardCreateRequest extends TebexPostRequest{
 	}
 
 	public function getEndpoint() : string{
-		return "/giftcards";
+		return "/gift-cards";
 	}
 
 	public function getExpectedResponseCode() : int{

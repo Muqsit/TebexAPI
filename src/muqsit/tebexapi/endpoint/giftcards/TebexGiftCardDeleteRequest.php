@@ -19,7 +19,7 @@ final class TebexGiftCardDeleteRequest extends TebexDeleteRequest{
 	}
 
 	public function getEndpoint() : string{
-		return "/giftcards";
+		return "/gift-cards";
 	}
 
 	public function getExpectedResponseCode() : int{
